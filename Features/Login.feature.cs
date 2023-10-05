@@ -113,14 +113,14 @@ this.ScenarioInitialize(scenarioInfo);
 #line 3
 this.FeatureBackground();
 #line hidden
-                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                             "User",
                             "Password"});
-                table1.AddRow(new string[] {
+                table2.AddRow(new string[] {
                             "student",
                             "Password123"});
 #line 7
- testRunner.When("I enter my valid creds", ((string)(null)), table1, "When ");
+ testRunner.When("I enter my valid creds", ((string)(null)), table2, "When ");
 #line hidden
 #line 10
  testRunner.And("I click the login button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -220,14 +220,14 @@ this.ScenarioInitialize(scenarioInfo);
 #line 3
 this.FeatureBackground();
 #line hidden
-                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                             "User",
                             "Password"});
-                table2.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "student",
                             "invalidPass"});
 #line 31
- testRunner.When("I enter my valid creds", ((string)(null)), table2, "When ");
+ testRunner.When("I enter my valid creds", ((string)(null)), table3, "When ");
 #line hidden
 #line 34
  testRunner.And("I click the login button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

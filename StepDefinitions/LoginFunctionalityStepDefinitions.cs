@@ -14,29 +14,30 @@ namespace PlaywrightAutomation.StepDefinitions
     public class LoginFunctionalityStepDefinitions
     {
         public readonly Driver _driver;
-        public readonly LoginPage _loginPage;
         public readonly ScenarioContext _context;
         public readonly String user;
         public readonly string password;
+        public readonly LoginPage _loginPage;
 
-        public LoginFunctionalityStepDefinitions(Driver driver,ScenarioContext context) {
+        public LoginFunctionalityStepDefinitions(Driver driver, ScenarioContext context)
+        {
             _driver = driver;
             this._context = context;
             _loginPage = new LoginPage(_driver.Page);
-
+            Console.WriteLine(Math.PI);
 
         }
-    
-        
+
+
         [Given(@"Navigate to the application ""([^""]*)""")]
         public void GivenNavigateToTheApplication(string p0)
         {
             _driver.Page.GotoAsync(p0);
 
-            
 
 
-            
+
+
         }
 
         [When(@"I enter my valid creds")]
@@ -48,7 +49,7 @@ namespace PlaywrightAutomation.StepDefinitions
 
             Console.WriteLine((string)data.Password);
             await _loginPage._txtusername.TypeAsync((String)data.User);
-           
+
             await _loginPage._txtpassword.TypeAsync((String)data.Password);
 
 
@@ -57,25 +58,25 @@ namespace PlaywrightAutomation.StepDefinitions
         [When(@"I click the login button")]
         public async Task WhenIClickTheLoginButton()
         {
-           await _loginPage._btnsubmit.ClickAsync();
+            await _loginPage._btnsubmit.ClickAsync();
         }
         [Then(@"Verify that the new url contains url ""([^""]*)""")]
         public void ThenVerifyThatTheNewUrlContainsUrl(string expectedUrl)
         {
 
-            String actualUrl=_driver.Page.Url.ToString();
+            String actualUrl = _driver.Page.Url.ToString();
 
-            Console.WriteLine("******************8"+(string)actualUrl);
+            Console.WriteLine("******************8" + (string)actualUrl);
             Console.WriteLine(expectedUrl);
             Assert.IsTrue(actualUrl.Contains(expectedUrl));
-           
+
         }
 
         [Then(@"Verify that the new page contains text ""([^""]*)"" or ""([^""]*)""")]
         public async Task ThenVerifyThatTheNewPageContainsTextOr(string option1, string option2)
         {
-            String actualTxt= await _loginPage._msgconrats.TextContentAsync();
-            Console.WriteLine("hellooooooooooooooooooooooooooooooooo"+actualTxt);
+            String actualTxt = await _loginPage._msgconrats.TextContentAsync();
+            Console.WriteLine("hellooooooooooooooooooooooooooooooooo" + actualTxt);
             Assert.IsTrue(actualTxt.Contains(option1) || actualTxt.Contains(option2),
                 "Page doesn't contains any message like '" + option1 + "' or '" + option2 + "' after login");
 
@@ -93,14 +94,14 @@ namespace PlaywrightAutomation.StepDefinitions
         [When(@"User enter ""([^""]*)"" and ""([^""]*)""")]
         public async Task WhenUserEnterAnd(string incorrectUser, string p1)
         {
-           await _loginPage._txtusername.TypeAsync(incorrectUser);
+            await _loginPage._txtusername.TypeAsync(incorrectUser);
             await _loginPage._txtpassword.TypeAsync(incorrectUser);
         }
 
         [Then(@"Verify error message displayed")]
         public async Task ThenVerifyErrorMessageDisplayed()
         {
-         
+
             Assert.IsTrue(await _loginPage._msginvalid.IsVisibleAsync());
         }
 

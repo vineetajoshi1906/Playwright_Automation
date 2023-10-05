@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PlaywrightAutomation.Utility;
+using System.Text.RegularExpressions;
 
 namespace SpecflowCalculator.specs.Pages
 {
@@ -25,11 +26,13 @@ namespace SpecflowCalculator.specs.Pages
             _txtusername = _page.Locator("#username");
             _txtpassword =_page.Locator("#password");
             _btnsubmit = _page.Locator("#submit");
+            _btnsubmit = _page.GetByRole(AriaRole.Button, new() { NameRegex=new Regex("submit",RegexOptions.IgnoreCase)});
             _txtsuccess = _page.Locator(".post-title");
             _txtlogout = _page.Locator("a[href='https://practicetestautomation.com/practice-test-login/']");
             // _msgconrats = _page.Locator("p[class='has-text-align-center'] strong");
             _msgconrats = page.Locator("text=Congratulations");
             _msginvalid = page.Locator(".show");
+
         }
         public async Task Login(string userNameText, string passWordText)
         {
